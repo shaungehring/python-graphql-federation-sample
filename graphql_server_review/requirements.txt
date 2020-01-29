@@ -1,0 +1,17 @@
+ariadne==0.9.0
+ariadne-extensions==0.1.5
+Click==7.0
+Flask==1.1.1
+graphql-core==3.0.1
+h11==0.9.0
+httptools==0.0.13
+itsdangerous==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+starlette==0.13.0
+typing-extensions==3.7.4.1
+uvicorn==0.11.2
+uvloop==0.14.0
+websockets==8.1
+Werkzeug==0.16.0
+objectpath

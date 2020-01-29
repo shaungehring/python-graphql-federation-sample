@@ -1,0 +1,26 @@
+type Query {
+    review(review_id: ID): [Review]
+}
+
+"""
+Boundry Type
+
+Photo
+
+This is the Boundry context for the Photo
+"""
+type Photo @key(fields: "id") @extends {
+    id: ID! @external
+    reviews: [Review]
+}
+
+"""
+Review
+
+The `Review` type
+"""
+type Review @key(fields: "id") {
+    id: ID!
+    title: String
+    body: String
+}

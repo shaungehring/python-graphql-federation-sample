@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  graphql_server_user:
+    container_name: graphql_server_user
+    build: graphql_server_user/
+    ports:
+      - "8300:8300"
+    volumes:
+      - type: bind
+        source: ./graphql_server_user
+        target: /code
+    environment:
+      - FLASK_ENV=development
+  graphql_server_photo:
+    container_name: graphql_server_photo
+    build: graphql_server_photo/
+    ports:
+      - "8301:8301"
+    volumes:
+      - type: bind
+        source: ./graphql_server_photo
+        target: /code
+    environment:
+      - FLASK_ENV=development
+  graphql_server_review:
+    container_name: graphql_server_review
+    build: graphql_server_review/
+    ports:
+      - "8302:8302"
+    volumes:
+      - type: bind
+        source: ./graphql_server_review
+        target: /code
+    environment:
+      - FLASK_ENV=development
+  federated_gateway:
+    depends_on:
+     - graphql_server_user
+     - graphql_server_photo
+     - graphql_server_review
+    build: federated_gateway/
+    volumes:
+      - type: bind
+        source: ./federated_gateway
+        target: /code
+    ports:
+      - "4000:4000"

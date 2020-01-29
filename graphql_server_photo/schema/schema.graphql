@@ -1,0 +1,25 @@
+type Query {
+    photo(photo_id: ID): [Photo]
+}
+
+"""
+Boundry Type
+
+User
+
+This is the Boundry context for the User
+"""
+type User @key(fields: "id") @extends {
+    id: ID! @external
+    photos: [Photo]
+}
+
+"""
+Photo
+
+The `Photo` type
+"""
+type Photo @key(fields: "id") {
+    id: ID!
+    url: String!
+}

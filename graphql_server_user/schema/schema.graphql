@@ -1,0 +1,14 @@
+type Query {
+    users(user_id: ID, first_name: String, last_name: String): [User]
+}
+
+"""
+User
+
+The `User` type
+"""
+type User @key(fields: "id"){
+    id: ID!
+    first_name: String!
+    last_name: String!
+}

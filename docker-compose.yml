@@ -39,10 +39,10 @@ services:
      - graphql_server_user
      - graphql_server_photo
      - graphql_server_review
-    build: federated_gateway/
-    volumes:
-      - type: bind
-        source: ./federated_gateway
-        target: /code
+    image: xmorse/apollo-federation-gateway
     ports:
-      - "4000:4000"
+      - "4000:80"
+    environment:
+      URL_0: "http://graphql_server_user:8300"
+      URL_1: "http://graphql_server_photo:8301"
+      URL_2: "http://graphql_server_review:8302"

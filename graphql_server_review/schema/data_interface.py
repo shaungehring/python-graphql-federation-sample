@@ -50,7 +50,7 @@ class DataStorage:
         self.data = [
             {
                 "id": 10000,
-                "user_id": 103,
+                "user_id": 100,
                 "photo_id": 1000,
                 "title": "Great Photo",
                 "body": "Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, "
@@ -64,14 +64,14 @@ class DataStorage:
             },
             {
                 "id": 10002,
-                "user_id": 103,
+                "user_id": 101,
                 "photo_id": 1002,
                 "title": "Great Photo",
                 "body": "Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, "
             },
             {
                 "id": 10003,
-                "user_id": 103,
+                "user_id": 102,
                 "photo_id": 1003,
                 "title": "Great Photo",
                 "body": "Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, "
@@ -85,7 +85,7 @@ class DataStorage:
             },
             {
                 "id": 10005,
-                "user_id": 102,
+                "user_id": 100,
                 "photo_id": 1005,
                 "title": "Great Photo",
                 "body": "Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, Lorem Ipsum Set Adore, "

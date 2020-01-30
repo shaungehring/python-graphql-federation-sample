@@ -17,7 +17,7 @@ def graphql_playgroud():
 @app.route("/", methods=["POST"])
 def graphql_server():
     data = request.get_json()
-
+    print(data)
     success, result = graphql_sync(
         schema,
         data,
@@ -26,7 +26,7 @@ def graphql_server():
     )
 
     status_code = 200 if success else 400
-
+    print(jsonify(result))
     return jsonify(result), status_code
 
 if __name__ == "__main__":

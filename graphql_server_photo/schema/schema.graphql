@@ -1,5 +1,5 @@
 type Query {
-    photo(photo_id: ID): [Photo]
+    photo(id: ID): [Photo]
 }
 
 """

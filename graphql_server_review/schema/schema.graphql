@@ -1,5 +1,5 @@
 type Query {
-    review(review_id: ID): [Review]
+    review(id: ID): [Review]
 }
 
 """
@@ -15,6 +15,17 @@ type Photo @key(fields: "id") @extends {
 }
 
 """
+Boundry Type
+
+Photo
+
+This is the Boundry context for the Photo
+"""
+type User @key(fields: "id") @extends {
+    id: ID! @external
+}
+
+"""
 Review
 
 The `Review` type
@@ -23,4 +34,5 @@ type Review @key(fields: "id") {
     id: ID!
     title: String
     body: String
+    reviewer: User
 }

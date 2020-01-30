@@ -1,12 +1,49 @@
 import objectpath
 
+class DataQuery:
+
+    tree = None
+
+    def __init__(self, json_data):
+        self.tree = objectpath.Tree(json_data)
+
+    def queryObjectTree(self, json_query):
+
+        results = list(self.tree.execute(json_query))
+
+        return results
+
+    def getObjectFilterString(self, argument_dictionary: dict):
+
+        filter_string = ""
+        i = 1
+
+        if len(argument_dictionary.items()) > 0:
+            filter_string = "["
+
+            for k, v in argument_dictionary.items():
+                if type(v) == str:
+                    v = "'{v}'".format(v=v)
+
+                filter_string = filter_string + "@.{k} is {v}".format(k=k, v=v)
+
+                if i < len(argument_dictionary.items()):
+                    filter_string = filter_string + " and "
+
+                i += 1
+
+            filter_string = filter_string + "]"
+
+        return filter_string
+
 class DataStorage:
 
     data = None
-    tree = None
+    dq = None
 
     def __init__(self):
         self.loadData()
+        self.dq = DataQuery(json_data=self.data)
 
     def loadData(self):
 
@@ -43,22 +80,9 @@ class DataStorage:
             },
         ]
 
-        self.tree = objectpath.Tree(self.data)
+    def getPhoto(self, **kwargs):
+        filter_string = self.dq.getObjectFilterString(argument_dictionary=kwargs)
 
-    def queryObjectTree(self, json_query):
+        json_query = "$.*{filters}".format(filters=filter_string)
 
-        results = list(self.tree.execute(json_query))
-
-        return results
-
-    def getPhotoById(self, photo_id: str):
-
-        json_query = "$.*[@.id is {photo_id}]".format(photo_id=photo_id)
-
-        return self.queryObjectTree(json_query=json_query)
-
-    def getPhotosByUserId(self, user_id: str):
-
-        json_query = "$.*[@.user_id is {user_id}]".format(user_id=user_id)
-
-        return self.queryObjectTree(json_query=json_query)
+        return self.dq.queryObjectTree(json_query=json_query)

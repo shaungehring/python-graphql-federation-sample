@@ -21,11 +21,8 @@ class SchemaCreator:
         )
 
         @query.field("users")
-        def resolve_users(*_, user_id=None, first_name=None, last_name=None):
-            if user_id:
-                return self.ds.getUserById(user_id=user_id)
-            elif first_name or last_name:
-                return self.ds.getUserByName(first_name=first_name, last_name=last_name)
+        def resolve_users(*_, **kwargs):
+            return self.ds.getUser(**kwargs)
 
         user = ObjectType("User")
 

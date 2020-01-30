@@ -31,8 +31,8 @@ class SchemaCreator:
         )
 
         @query.field("photo")
-        def resolve_photo(*_, photo_id=None):
-           return self.ds.getPhotoById(photo_id=photo_id)
+        def resolve_photo(*_, **kwargs):
+           return self.ds.getPhoto(**kwargs)
 
         user = FederatedObjectType("User")
 
@@ -43,8 +43,11 @@ class SchemaCreator:
 
         @user.field("photos")
         def resolve_user_photos(obj, info):
-            user_id = obj.id
-            return self.ds.getPhotosByUserId(user_id=user_id)
+            kwargs = {
+                "user_id": obj.id
+            }
+
+            return self.ds.getPhoto(**kwargs)
 
         photo = ObjectType("Photo")
 

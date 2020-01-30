@@ -31,8 +31,8 @@ class SchemaCreator:
         )
 
         @query.field("review")
-        def resolve_review(*_, review_id=None):
-           return self.ds.getReviewById(review_id=review_id)
+        def resolve_review(*_, **kwargs):
+           return self.ds.getReview(**kwargs)
 
         photo = FederatedObjectType("Photo")
 
@@ -43,8 +43,11 @@ class SchemaCreator:
 
         @photo.field("reviews")
         def resolve_photo_reviews(obj, info):
-            photo_id = obj.id
-            return self.ds.getReviewsByPhotoId(photo_id=photo_id)
+            kwargs = {
+                "photo_id": obj.id
+            }
+
+            return self.ds.getReview(**kwargs)
 
         review = ObjectType("Review")
 

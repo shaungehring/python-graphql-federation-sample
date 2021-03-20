@@ -6,7 +6,7 @@ graphql-core==3.0.1
 h11==0.9.0
 httptools==0.0.13
 itsdangerous==1.1.0
-Jinja2==2.10.3
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 starlette==0.13.0
 typing-extensions==3.7.4.1
